@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Talha Hussain | Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+    <!-- Premium Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Syed Talha Hussain</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}" class="active">Home</a></li>
+            <li><a href="{% url 'projects' %}">Projects</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+        <div class="glass-panel">
+            
+            <!-- Hero Section (Intro + Profile Photo) -->
+            <div class="hero-wrapper">
+                <div class="hero-text">
+                    <!-- ⚠️ Aapka Pura Naam aur Backend Profile Yahan Set Kar Di Hai -->
+                    <h1>Hi, I am <span>Syed Talha Hussain</span><br>Backend Developer</h1>
+                    <p>I design high-performance server logic, secure databases, and scalable web architectures. Expert in Python automation, robust Django endpoints, and processing heavy data workflows smoothly behind the scenes.</p>
+                    <a href="{% url 'projects' %}" class="btn-gold">View My Work <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="image-holder">
+                    {% if profile %}
+                        <img src="{{ profile.profile_picture.url }}" alt="Syed Talha Hussain Profile">
+                    {% else %}
+                        <img src="{% static 'images/profile.jpg' %}" alt="Syed Talha Hussain Profile">
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Dynamic Skills Section -->
+            <div class="skills-section">
+                <h2>My Technical <span>Skills</span></h2>
+                <div class="skills-grid">
+                    
+                    {% for skill in skills %}
+                    <div class="skill-card">
+                        <div class="skill-info">
+                            <span><i class="fa-solid fa-code" style="color: #c5a880; margin-right: 8px;"></i> {{ skill.name }}</span>
+                            <span style="color: #c5a880;">{{ skill.percentage }}%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: {{ skill.percentage }}%;"></div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p style="text-align: center; color: #a0aec0; grid-column: 1/-1;">No skills added yet. Please add your skills from the Admin Panel!</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

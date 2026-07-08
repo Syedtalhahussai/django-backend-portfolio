@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Logistic Cargo</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+         <div class="logo">Syed Talha Hussain</div>
+         <ul class="nav-links">
+             <li><a href="{% url 'home' %}">Home</a></li>
+             <li><a href="{% url 'projects' %}" class="active">Projects</a></li>
+             <li><a href="{% url 'contact' %}">Contact</a></li>
+         </ul>
+    </nav>
+
+
+    <div class="container">
+        <div class="glass-panel">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                <h1>My <span>Logistic & Cargo</span> Projects</h1>
+                <p>Advanced shipment and logistics supply chain systems developed using Django backend architecture.</p>
+            </div>
+
+            <!-- Dynamic Projects Grid (Jo Admin Panel se aayenge) -->
+            <div class="projects-grid">
+                
+                {% for project in projects %}
+                <div class="project-card">
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-img">
+                    {% else %}
+                        <img src="{% static 'images/logistic1.jpg' %}" alt="Default Image" class="project-img">
+                    {% endif %}
+                    
+                    <div class="project-info">
+                        <span class="project-tag">{{ project.tag }}</span>
+                        <h3>{{ project.title }}</h3>
+                        <p style="color: #a0aec0; font-size: 14px; margin-bottom: 15px;">{{ project.description }}</p>
+                        
+                        {% if project.project_url %}
+                            <a href="{{ project.project_url }}" target="_blank" class="btn-gold" style="padding: 6px 18px; font-size: 13px; border-radius: 8px;">
+                                Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p style="text-align: center; color: #a0aec0; grid-column: 1/-1;">No projects added yet. Please add your logistics websites from the Admin Panel!</p>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

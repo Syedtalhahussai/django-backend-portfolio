@@ -1,0 +1,269 @@
+@import url('https://googleapis.com');
+
+/* --- 1. Master Settings --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at 50% 50%, #1e222b 0%, #0a0b0d 100%);
+    color: #f3f4f6;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 60px;
+}
+
+/* --- 2. Premium Animated Navigation Bar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(10, 11, 13, 0.6);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c5a880 0%, #9a7b56 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #c5a880;
+    text-shadow: 0 0 15px rgba(197, 168, 128, 0.4);
+}
+
+/* --- 3. Master Container & 3D Glass Layout --- */
+.container {
+    max-width: 1140px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 30px;
+    padding: 60px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    transform: perspective(1000px) rotateX(0deg);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.glass-panel:hover {
+    transform: perspective(1000px) translateY(-8px);
+    box-shadow: 0 45px 85px rgba(0, 0, 0, 0.7), 
+                inset 0 1px 3px rgba(255, 255, 255, 0.2);
+    border-color: rgba(197, 168, 128, 0.3);
+}
+
+/* --- 4. Hero Section Layout --- */
+.hero-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-text h1 span {
+    background: linear-gradient(135deg, #e3cbb0 0%, #9a7b56 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    color: #a0aec0;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+/* --- 5. Ultimate 3D Profile Frame --- */
+.image-holder {
+    position: relative;
+    justify-self: center;
+}
+
+.image-holder img {
+    width: 280px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 20px 25px 50px rgba(0, 0, 0, 0.6);
+    transition: all 0.6s ease;
+}
+
+.image-holder::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(197, 168, 128, 0.3);
+    border-radius: 24px;
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.image-holder:hover img {
+    transform: rotateY(-12deg) rotateX(8deg) translateY(-5px);
+    box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.7);
+    border-color: #c5a880;
+}
+
+.image-holder:hover::before {
+    transform: translate(25px, 25px) rotate(5deg);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- 6. Classical Golden Buttons --- */
+.btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #c5a880 0%, #9a7b56 100%);
+    color: #0a0b0d;
+    text-decoration: none;
+    padding: 14px 35px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 25px rgba(154, 123, 86, 0.25);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(154, 123, 86, 0.45);
+    background: linear-gradient(135deg, #e3cbb0 0%, #ba976e 100%);
+}
+
+/* --- 7. Logistics Projects Card Grid --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.project-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(197, 168, 128, 0.2);
+    transform: translateY(-8px);
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #f3f4f6;
+}
+
+.project-tag {
+    display: inline-block;
+    font-size: 11px;
+    background: rgba(197, 168, 128, 0.1);
+    color: #c5a880;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+/* --- 8. Premium Glass Contact Form --- */
+.contact-form {
+    display: grid;
+    gap: 25px;
+    max-width: 600px;
+    margin: 40px auto 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #c5a880;
+    box-shadow: 0 0 15px rgba(197, 168, 128, 0.15);
+    background: rgba(0, 0, 0, 0.35);
+}
